@@ -10,9 +10,10 @@ import UIKit
 
 class RoverDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    let rover = Rover()
-    var manifest: roverItem?
-    var segueRover: roverItem?
+    let roverData = RoverData()
+    
+    var manifest: roverDictionary?
+    var segueRover: roverDictionary?
    
     var pickerDataSol:[String] = [String]()
     var pickerDataCam:[String] = [String]()
@@ -26,27 +27,33 @@ class RoverDetailViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func searchRoverData(_ sender: UIButton) {
         if (solPickerField.text!.isEmpty == false && camPickerField.text!.isEmpty == false) {
-            // hide picker
+            // hide picker by event emitter
             self.view.endEditing(true)
             
-            rover.getRoverPhoto(rover: (segueRover!["name"])! as! String, sol: solPickerField.text!, cam: camPickerField.text!)
+            roverData.getRoverPhoto(rover: (segueRover!["name"])! as! String, sol: solPickerField.text!, cam: camPickerField.text!)
             {
                 (roverPhoto) in
                 
                 let url = URL(string: roverPhoto["img_src"]! as! String)
-
-                self.rover.loadFromUrl(url) { (image) in
+                
+                self.roverData.downloadImageFromURL(url) { (image) in
                     self.mainImage.image = image
                 }
-            
-                let camera = roverPhoto["camera"]! as! roverItem
-                let fullname = (camera["full_name"]! != nil) ? camera["full_name"]! as! String : ""
-                let sol = String(roverPhoto["sol"]! as! Int)
+                
+                
+                let camera    = roverPhoto["camera"]! as! roverDictionary
+                
+                let fullname  = camera["full_name"]!  as! String
+                let camname   = camera["name"]!  as! String
+                
+                let sol       = String(roverPhoto["sol"]! as! Int)
+                let earthdate = roverPhoto["earth_date"]! as! String
+                
             
                 self.mainText.text = """
-                Earth Date: \(roverPhoto["earth_date"]! as! String)
+                Earth Date: \(earthdate)
                 Martian Sol: \(sol)
-                Camera: \(fullname) (\(camera["name"]! as! String))
+                Camera: \(fullname) (\(camname))
                 """
             }
         }
@@ -71,7 +78,6 @@ class RoverDetailViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         if pickerView.tag == 1 {
             return pickerDataSol[row]
         }
@@ -88,12 +94,12 @@ class RoverDetailViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if pickerView.tag == 1 {
             solPickerField.text = pickerDataSol[row];
             
-            let photos = self.manifest!["photos"]!! as! roverDictionary
+            let photos = self.manifest!["photos"] as! [roverDictionary]
             
             // fill second picker (cameras) after select first
             for pic in photos {
-                if (pickerDataSol[row] == String(describing: pic["sol"]!!)) {
-                    self.pickerDataCam = pic["cameras"]!! as! [String]
+                if (pickerDataSol[row] == String(describing: pic["sol"]!)) {
+                    self.pickerDataCam = pic["cameras"]! as! [String]
                 }
             }
         }
@@ -125,15 +131,10 @@ class RoverDetailViewController: UIViewController, UIPickerViewDelegate, UIPicke
         camPickerField.inputView = camPickerView
 
         
-        
-        rover.getRoverManifest(rover: (segueRover!["name"])! as! String) { (manifesto) in
-            self.manifest = manifesto["photo_manifest"]!! as? roverItem
-            self.title = self.manifest!["name"]!! as? String
-            let photos = self.manifest!["photos"]!! as! roverDictionary
-
-            for pic in photos {
-                self.pickerDataSol.append(String(describing: pic["sol"]!!))
-            }
+        roverData.getRoverManifest(rover: (segueRover!["name"])! as! String) { (manifest, title, dataSolCollection) in
+            self.manifest = manifest
+            self.title = title
+            self.pickerDataSol = dataSolCollection
         }
     }
 

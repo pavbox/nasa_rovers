@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-typealias roverDictionary  = [String: Any?]
+typealias roverDictionary  = [String: Any]
 
 class RoverData: NSObject {
     private let API_ROVER = "https://api.nasa.gov/mars-photos/api/v1"
     private let API_KEY = "v1DSVRALYpyFo45dmNAasFbDYg4bszNEAmD35DQU"
 
     
-    public func getRoverManifest(rover: String, _ callback: @escaping ( roverDictionary ) -> Void ) {
+    public func getRoverManifest(rover: String, _ callback: @escaping ( roverDictionary, String, [String] ) -> Void ) {
         guard let url = URL(string: "\(self.API_ROVER)/manifests/\(rover)/?api_key=\(self.API_KEY)") else { return }
         
         let cachableRequest = createCachableLink(url: url)
@@ -25,8 +25,22 @@ class RoverData: NSObject {
             if let data = data {
                 do {
                     let manifest = try JSONDecoder().decode(ManifestJSON.self, from: data)
+                    
+                    let manifesto = manifest.asDictionary
+                    
+                    let photo_manifest = manifesto["photo_manifest"] as! roverDictionary
+                    let title  = photo_manifest["name"] as! String
+                    let photos = photo_manifest["photos"] as! [roverDictionary]
+                    
+                    var dataSolCollection: [String] = []
+                   
+                    for photo in photos {
+                        dataSolCollection.append(String(describing: photo["sol"]!))
+                    }
+                    
+                    
                     DispatchQueue.main.async() { () -> Void in
-                        callback(manifest.asDictionary)
+                        callback(photo_manifest, title, dataSolCollection)
                     }
                 } catch {
                     print(error)

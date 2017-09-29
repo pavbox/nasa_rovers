@@ -14,11 +14,11 @@
 		840CA7F61F79719A00EF8B87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840CA7F41F79719A00EF8B87 /* LaunchScreen.storyboard */; };
 		840CA7FE1F79733F00EF8B87 /* RoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CA7FD1F79733F00EF8B87 /* RoverTableViewCell.swift */; };
 		840CA8001F79788500EF8B87 /* RoverListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CA7FF1F79788500EF8B87 /* RoverListViewController.swift */; };
-		840CA8051F799D2200EF8B87 /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CA8041F799D2200EF8B87 /* Rover.swift */; };
+		840CA8051F799D2200EF8B87 /* RoverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CA8041F799D2200EF8B87 /* RoverData.swift */; };
 		84415DC41F7A10A40084429F /* RoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DC31F7A10A40084429F /* RoverDetailViewController.swift */; };
-		84415DC71F7A79F00084429F /* Rovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DC61F7A79F00084429F /* Rovers.swift */; };
-		84415DC91F7A7A8E0084429F /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DC81F7A7A8E0084429F /* Manifest.swift */; };
-		84415DCB1F7A7AEA0084429F /* RoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DCA1F7A7AEA0084429F /* RoverPhoto.swift */; };
+		84415DC71F7A79F00084429F /* RoversJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DC61F7A79F00084429F /* RoversJSON.swift */; };
+		84415DC91F7A7A8E0084429F /* ManifestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DC81F7A7A8E0084429F /* ManifestJSON.swift */; };
+		84415DCB1F7A7AEA0084429F /* RoverPhotoJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84415DCA1F7A7AEA0084429F /* RoverPhotoJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +31,11 @@
 		840CA7F71F79719A00EF8B87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		840CA7FD1F79733F00EF8B87 /* RoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverTableViewCell.swift; sourceTree = "<group>"; };
 		840CA7FF1F79788500EF8B87 /* RoverListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverListViewController.swift; sourceTree = "<group>"; };
-		840CA8041F799D2200EF8B87 /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
+		840CA8041F799D2200EF8B87 /* RoverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverData.swift; sourceTree = "<group>"; };
 		84415DC31F7A10A40084429F /* RoverDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverDetailViewController.swift; sourceTree = "<group>"; };
-		84415DC61F7A79F00084429F /* Rovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rovers.swift; sourceTree = "<group>"; };
-		84415DC81F7A7A8E0084429F /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
-		84415DCA1F7A7AEA0084429F /* RoverPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverPhoto.swift; sourceTree = "<group>"; };
+		84415DC61F7A79F00084429F /* RoversJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoversJSON.swift; sourceTree = "<group>"; };
+		84415DC81F7A7A8E0084429F /* ManifestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManifestJSON.swift; sourceTree = "<group>"; };
+		84415DCA1F7A7AEA0084429F /* RoverPhotoJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverPhotoJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				84415DC51F7A79C90084429F /* MTO */,
-				840CA8041F799D2200EF8B87 /* Rover.swift */,
+				840CA8041F799D2200EF8B87 /* RoverData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,9 +110,9 @@
 		84415DC51F7A79C90084429F /* MTO */ = {
 			isa = PBXGroup;
 			children = (
-				84415DC61F7A79F00084429F /* Rovers.swift */,
-				84415DC81F7A7A8E0084429F /* Manifest.swift */,
-				84415DCA1F7A7AEA0084429F /* RoverPhoto.swift */,
+				84415DC61F7A79F00084429F /* RoversJSON.swift */,
+				84415DC81F7A7A8E0084429F /* ManifestJSON.swift */,
+				84415DCA1F7A7AEA0084429F /* RoverPhotoJSON.swift */,
 			);
 			path = MTO;
 			sourceTree = "<group>";
@@ -189,13 +189,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84415DC91F7A7A8E0084429F /* Manifest.swift in Sources */,
-				840CA8051F799D2200EF8B87 /* Rover.swift in Sources */,
+				84415DC91F7A7A8E0084429F /* ManifestJSON.swift in Sources */,
+				840CA8051F799D2200EF8B87 /* RoverData.swift in Sources */,
 				840CA7EE1F79719A00EF8B87 /* ViewController.swift in Sources */,
 				84415DC41F7A10A40084429F /* RoverDetailViewController.swift in Sources */,
 				840CA8001F79788500EF8B87 /* RoverListViewController.swift in Sources */,
-				84415DC71F7A79F00084429F /* Rovers.swift in Sources */,
-				84415DCB1F7A7AEA0084429F /* RoverPhoto.swift in Sources */,
+				84415DC71F7A79F00084429F /* RoversJSON.swift in Sources */,
+				84415DCB1F7A7AEA0084429F /* RoverPhotoJSON.swift in Sources */,
 				840CA7FE1F79733F00EF8B87 /* RoverTableViewCell.swift in Sources */,
 				840CA7EC1F79719A00EF8B87 /* AppDelegate.swift in Sources */,
 			);
