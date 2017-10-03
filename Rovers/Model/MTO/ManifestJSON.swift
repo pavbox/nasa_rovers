@@ -15,7 +15,7 @@ class ManifestJSON: NSObject, Decodable {
     public var asDictionary: roverDictionary {
         // guard let p_manifest = self.photo_manifest else { return nil }
         return [
-            "photo_manifest": self.photo_manifest?.asDictionary
+            "photo_manifest": (self.photo_manifest)!.asDictionary
         ]
     }
     
